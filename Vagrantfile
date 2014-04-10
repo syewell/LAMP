@@ -10,5 +10,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.25.25"
   config.vm.provision :shell, :inline => "ulimit -n 4048"
   config.vm.provision :shell, :path => "install.sh"
-  config.vm.synced_folder ".", "/var/www"
+  config.vm.synced_folder ".", "/var/www", :owner=>'vagrant', :group=>'www-data', :mount_operations=> ['dmode=775', 'fmode=775']
 end

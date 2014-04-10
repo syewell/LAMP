@@ -12,6 +12,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "install.sh"
   #config.vm.synced_folder ".", "/var/www", :owner=> 'vagrant', :group=>'www-data', :mount_options => ['dmode=775', 'fmode=775']
   config.vm.synced_folder ".", "/var/www", nfs: true
+
+  config.ssh.forward_agent = true
+  
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
 
